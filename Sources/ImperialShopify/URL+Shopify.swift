@@ -10,7 +10,7 @@ extension URL {
 		let queryString = queryItems.joined(separator: "&")
 		
         let hmac = HMAC<SHA256>.authenticationCode(for: queryString.utf8, using: .init(data: Array(key.utf8)))
-		return hmac.hex
+		return hmac.hexString
 	}
 
 	func isValidShopifyDomain() -> Bool {
@@ -23,7 +23,7 @@ extension URL {
 }
 
 extension ContiguousBytes {
-    public var hex: String {
+    public var hexString: String {
         let table: [UInt8] = [
             0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x61, 0x62, 0x63, 0x64, 0x65, 0x66
         ]
