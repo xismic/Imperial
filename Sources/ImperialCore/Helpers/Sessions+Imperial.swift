@@ -25,7 +25,7 @@ extension Session {
     /// - Returns: The access token stored with the `access_token` key.
     /// - Throws: `Abort.unauthorized` if no access token exists.m
     public func accessToken() throws -> String {
-        guard let token = try? get(Keys.token, as: String.self) else {
+        guard let token = self.data[Keys.token] else {
             throw Abort(.unauthorized, reason: "User currently not authenticated")
         }
         return token
@@ -35,7 +35,7 @@ extension Session {
     ///
     /// - Parameter token: the access token to store on the session
     public func setAccessToken(_ token: String) throws {
-        try set(Keys.token, to: token)
+        self.data[Keys.token] = token
     }
     
     /// Gets an object stored in a session with JSON as a given type.
